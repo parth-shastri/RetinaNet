@@ -1,3 +1,4 @@
+"The pytorch code in order to train the retina-net model"
 import torch
 from torch import nn
 import numpy
