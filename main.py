@@ -48,7 +48,7 @@ with open(file_path, "r") as fp:
 
     for rows in read:
         new_row = []
-        class_ids.append(config.CLASSES_CONFIG[clas])
+        class_ids.append(0)
         file_paths.append(rows[0] if rows[0].endswith(".png") else rows[0]+".png")
         new_row.append(float(rows[3]))
         new_row.append(float(rows[4]))
@@ -799,7 +799,7 @@ model_dir = "retinanet/"
 label_encoder = LabelEncoder()
 
 num_classes = 2
-batch_size = 1
+batch_size = 2
 
 learning_rates = [2.5e-06, 0.000625, 0.00125, 0.0025, 0.00025, 2.5e-05]
 learning_rate_boundaries = [125, 250, 500, 240000, 360000]
@@ -891,7 +891,7 @@ epochs = 1
 # remove `.take` when training on the full dataset
 
 model.fit(
-    train_dataset.take(100),
+    train_dataset,
     epochs=epochs,
     callbacks=callbacks_list,
     verbose=1,
